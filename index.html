@@ -89,19 +89,19 @@
       // ── Map setup ────────────────────────────────────────────
       const map = L.map('map', {
         crs: L.CRS.Simple,  // flat projection, no globe math
-        minZoom: 0,
+        minZoom: -1,  // allows zooming out beyond zoom 0
         maxZoom: 4,         // match the number of zoom levels you've drawn
         zoomSnap: 0.5,
         attributionControl: false
       });
 
       // ── IMPORTANT: set these to match your full map image size in pixels ──
-      // At zoom level 0 you have 1 tile (256x256).
-      // At zoom level 1 you have 2x2 tiles (512x512). Etc.
-      // So if your highest zoom level is 4, your full image is 256 * 2^4 = 4096x4096.
+      // At zoom level 0 you have 1 tile (1024x1024).
+      // At zoom level 1 you have 2x2 tiles (2048x2048). Etc.
+      // So if your highest zoom level is 4, your full image is 1024 * 2^4 = 16384x16384.
       // Adjust mapWidth and mapHeight to your actual dimensions.
-      const mapWidth  = 4096; // pixels at max zoom
-      const mapHeight = 4096; // pixels at max zoom
+      const mapWidth  = 16384; // pixels at max zoom
+      const mapHeight = 16384; // pixels at max zoom
 
       // Convert pixel dimensions to Leaflet's Simple CRS coordinate space
       const bounds = map.unproject([mapWidth, mapHeight], map.getMaxZoom());
@@ -154,7 +154,7 @@
     // ── Tile layer factory ───────────────────────────────────────
     function makeTileLayer(basePath) {
       return L.tileLayer(basePath + '{z}/{x}/{y}.png', {
-        tileSize: 256,
+        tileSize: 1024,
         noWrap: true,
         // If a tile file is missing (e.g. a sparse snapshot),
         // show a transparent tile instead of a broken image icon.
