@@ -107,6 +107,7 @@
       const bounds = map.unproject([mapWidth, mapHeight], map.getMaxZoom());
       map.setMaxBounds([[0, 0], [bounds.lat, bounds.lng]]);
       map.fitBounds([[0, 0], [bounds.lat, bounds.lng]]);
+      map.setView([bounds.lat / 2, bounds.lng / 2], 0);
 
       // ── Tile layer ───────────────────────────────────────────
       // Starts on the last (most recent) era
