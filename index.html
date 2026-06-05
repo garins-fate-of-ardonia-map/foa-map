@@ -89,7 +89,7 @@
       // ── Map setup ────────────────────────────────────────────
       const map = L.map('map', {
         crs: L.CRS.Simple,  // flat projection, no globe math
-        minZoom: -1,  // allows zooming out beyond zoom 0
+        minZoom: 0,  // allows zooming out beyond zoom 0
         maxZoom: 4,         // match the number of zoom levels you've drawn
         zoomSnap: 0.5,
         attributionControl: false
